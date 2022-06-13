@@ -8,15 +8,15 @@
             </select>
         </div>
 
-        <div>
+        <!-- <div>
             <h3>Usa l'input per cercare la tua canzone</h3>
             <button @click.prevent="resetSearch()">Clear</button>
             <button @click.prevent="$emit('mySearch', inputText)">Search</button>
             <input type="text" placeholder="Search" 
                 v-model="inputText" 
                 @keyup.enter="$emit('mySearch', inputText)">
-                <!-- @keyup.enter="search()"> -->
-        </div>
+                @keyup.enter="search()">
+        </div> -->
     </div>
 </template>
 
