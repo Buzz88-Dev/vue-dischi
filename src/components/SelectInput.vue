@@ -2,7 +2,8 @@
     <div class="selectSong">
         <div>
             <h3>Usa la Select per filtrare per genere</h3>
-            <select>
+            <select v-model="selected" @click="sendValueSelect">
+                <option>All</option>
                 <option v-for="(value, index) in itemGenre" :key="index">{{ value }}</option>
             </select>
         </div>
@@ -29,7 +30,8 @@ export default {
 
     data(){
         return {
-            inputText : "",           
+            inputText : "",
+            selected: 'All',           
         }
     },
 
@@ -43,6 +45,10 @@ export default {
         // search(){
         //     this.$emit('mySearch', this.inputText);
         // }
+
+        sendValueSelect() {
+            this.$emit('mySelect', this.selected);
+        }
     }
 }
 </script>
