@@ -1,17 +1,25 @@
 <template>
     <div class="selectSong">
-        <h3>FILTRA PER TIPO</h3>
-        <select>
-            <option value="0">all</option>
-            <option value="1">Rock</option> 
-            <option value="2">Pop</option> 
-            <option value="3">Jazz</option>
-            <option value="3">Metal</option>
-        </select>
-        <button id="mybutton">Click</button>
-        <input type="text" placeholder="Search" 
-            v-model="inputText" 
-            @keyup.enter="$emit('mySearch', inputText)">
+        <div>
+            <h3>Usa la Select per filtrare per genere</h3>
+            <select>
+                <option value="0">All</option>
+                <option value="1">Rock</option> 
+                <option value="2">Pop</option> 
+                <option value="3">Jazz</option>
+                <option value="3">Metal</option>
+            </select>
+        </div>
+
+        <div>
+            <h3>Usa l'input per cercare la tua canzone</h3>
+            <button @click.prevent="resetSearch()">Clear</button>
+            <button @click.prevent="$emit('mySearch', inputText)">Search</button>
+            <input type="text" placeholder="Search" 
+                v-model="inputText" 
+                @keyup.enter="$emit('mySearch', inputText)">
+                <!-- @keyup.enter="search()"> -->
+        </div>
     </div>
 </template>
 
@@ -23,6 +31,18 @@ export default {
         return {
             inputText : "",
         }
+    },
+
+    methods: {
+        resetSearch(){
+            this.inputText = "";
+            this.$emit('mySearch', this.inputText)
+            // this.search();
+        },
+
+        // search(){
+        //     this.$emit('mySearch', this.inputText);
+        // }
     }
 }
 </script>
@@ -32,6 +52,8 @@ export default {
     .selectSong {
         padding: 20px;
         text-align: center;
+        display: flex;
+        justify-content: space-between;
 
         h3 {
             color: white;
