@@ -1,10 +1,10 @@
 <template>
   <div class="container">
 
-    <SelectSongGenre @mySearch="searchSong()" />
-    <div class="prova">
-      {{ userText }}
-    </div>
+    <SelectSongGenre @mySearch="searchSong" />
+    <!-- <div class="prova">
+        {{ userText }}
+    </div> -->
     <div v-if="loading">
             <LoadDiscs />
     </div>
@@ -85,8 +85,8 @@ export default {
     color: white;
   }
 
-  .prova {
-    color: black;
-  }
+  // .prova {
+  //   color: white
+  // }
 
 </style>
