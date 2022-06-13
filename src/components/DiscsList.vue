@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+
+    <SelectSongGenre @mySearch="searchSong()" />
+    <div class="prova">
+      {{ userText }}
+    </div>
     <div v-if="loading">
             <LoadDiscs />
     </div>
@@ -14,6 +19,7 @@
 import axios from "axios";
 import DiscCard from './DiscCard.vue';
 import LoadDiscs from './Load.vue';
+import SelectSongGenre from './SelectInput.vue';
 
 export default {
   name: 'DiscsList',
@@ -21,6 +27,7 @@ export default {
   components: {
     DiscCard,
     LoadDiscs,
+    SelectSongGenre,
   },
 
   data(){
@@ -28,6 +35,7 @@ export default {
           apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
           detailsDiscs: [],
           loading: true,
+          userText: "",
       }
   },
 
@@ -51,6 +59,11 @@ export default {
       .catch((error) => {
         console.log("Errore", error);
       })
+    },
+
+    searchSong(textUser){
+      this.userText = textUser;
+      console.log(textUser);
     }
   }
 }
@@ -70,6 +83,10 @@ export default {
     flex-wrap: wrap;
     margin: auto;
     color: white;
+  }
+
+  .prova {
+    color: black;
   }
 
 </style>
