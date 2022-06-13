@@ -13,7 +13,7 @@
             <LoadDiscs />
     </div>
     <div v-else class="discs_list">
-            <DiscCard v-for="(song, index) in filteredDetailsDiscs" :key="index" :itemDiscCard="song" /> 
+            <DiscCard v-for="(song, index) in filteredGenreSongs" :key="index" :itemDiscCard="song" /> 
                                                 <!-- itemDiscCard è quello indicato in props in DiscCard.vue mentre song in DiscsList.vue -->
     </div>
   </div>
@@ -90,13 +90,23 @@ export default {
   },
 
   computed: {
-    filteredDetailsDiscs (){
-      if (this.userText === ""){
-        return this.detailsDiscs
+    // filteredDetailsDiscs (){
+    //   if (this.userText === ""){
+    //     return this.detailsDiscs
+    //   } else {
+    //     return this.detailsDiscs.filter(item => {
+    //         return item.title.toLowerCase().includes(this.userText.toLowerCase())
+    //   })
+    //   }
+    // },
+
+    filteredGenreSongs (){
+      if (this.selectGenre === "All"){
+        return this.detailsDiscs;
       } else {
         return this.detailsDiscs.filter(item => {
-          return item.title.toLowerCase().includes(this.userText.toLowerCase())
-      })
+          return item.genre.toLowerCase().includes(this.selectGenre.toLowerCase());
+        })
       }
     }
   }
