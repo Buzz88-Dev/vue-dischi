@@ -2,10 +2,11 @@
   <div class="container">
     
     <div class="search">
-      <SelectSongGenre @mySearch="searchSong" />
+      <SelectSongGenre @mySearch="searchSong" :itemGenre="searchGenreSong()"/>
       <!-- <div class="prova">
           {{ userText }}
       </div> -->
+
     </div>
 
     <div v-if="loading">
@@ -16,6 +17,7 @@
                                                 <!-- itemDiscCard è quello indicato in props in DiscCard.vue mentre song in DiscsList.vue -->
     </div>
   </div>
+
 </template>
 
 <script>
@@ -39,6 +41,7 @@ export default {
           detailsDiscs: [],
           loading: true,
           userText: "",
+          genderSong: [],
       }
   },
 
@@ -67,6 +70,16 @@ export default {
     searchSong(textUser){
       this.userText = textUser;
       console.log(textUser);
+    },
+
+    searchGenreSong(){
+      this.detailsDiscs.forEach(element => {
+          if (!this.genderSong.includes(element.genre)){
+            this.genderSong.push(element.genre);
+            console.log(this.genderSong);
+          }
+      });
+      return this.genderSong;
     }
   },
 
