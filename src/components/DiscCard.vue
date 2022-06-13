@@ -1,8 +1,17 @@
 <template>
   <div class="card">
-        <img :src="item.poster" :alt="item.title">
-        <h3>{{ item.title }}</h3>
-        <span>{{ item.author }} <br> {{ item.year }}</span>
+        <img :src="itemDiscCard.poster" :alt="itemDiscCard.title">
+        <div class="text">
+            <h4>{{itemDiscCard.title}}</h4>
+            <div class="author_year">
+                <div>
+                    {{itemDiscCard.author}}
+                </div>
+                <div>
+                    {{itemDiscCard.year}}
+                </div>
+            </div>
+        </div>
   </div>
 </template>
 
@@ -13,10 +22,8 @@ export default {
   name: 'DiscCard',
 
   props: {
-    item : Object,
+    itemDiscCard : Object,   
   },
-
-  
 }
 </script>
 
@@ -26,25 +33,34 @@ export default {
     .card {
 
         width: calc((100% /5) - 40px);
-        margin: 0 20px;
-        margin-bottom: 20px;
+        margin: 0  20px 20px 20px;
         padding: 20px;
-        background-color: grey;
+        background-color: rgba(46,58,70,255);
         text-align: center;
 
         img {
             width: 100%;
+            height: auto;
         }
 
-        h3 {
-            font-weight: 600;
-            margin-top: 20px;
-            color: white;
+        .text {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 10px;
         }
 
-        span {
+        h4 {
+            display: flex;
+            flex-wrap: wrap;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .author_year {
+            color: grey;
+            text-align: center;
+            padding-top: 10px;
             font-size: 12px;
-            font-weight: 500;
         }
 }
 </style>

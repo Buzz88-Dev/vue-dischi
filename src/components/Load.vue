@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h2>Caricamento immagini in corso...</h2>
+    <div class="load">
+        <h2>Caricamento delle immagini in corso...</h2>
     </div>
 </template>
 
@@ -12,8 +12,13 @@ export default {
 
 <style  scoped lang="scss">
 
-div {
-    padding: 20px;
-    border-radius: 20px;
-}
+    .load {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    h2 {
+        color: white;
+    }
+    
 </style>

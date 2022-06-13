@@ -16,6 +16,6 @@ export default {
   .navbar {
     width: 100%;
     height: 50px;
-    background-color: rgba(36, 42, 50, 0.502);
+    background-color: rgba(46,58,70,255);
   }
 </style>

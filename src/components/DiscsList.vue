@@ -1,10 +1,13 @@
 <template>
-      <div v-if="loading">
+  <div class="container">
+    <div v-if="loading">
             <LoadDiscs />
-      </div>
-      <div v-else class="discs_list">
-            <DiscCard v-for="(song, index) in detailsDiscs" :key="index" :item="song" />
-      </div>
+    </div>
+    <div v-else class="discs_list">
+            <DiscCard v-for="(song, index) in detailsDiscs" :key="index" :itemDiscCard="song" /> 
+                                                <!-- itemDiscCard è quello indicato in props in DiscCard.vue mentre song in DiscsList.vue -->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -37,11 +40,13 @@ export default {
       axios
       .get(this.apiUrl)
       .then((result) => {
-        this.detailsDiscs = result.data.response;
+        this.detailsDiscs = result.data.response;  // è un array composto da 10 oggetti
+                                                   // (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
         this.loading = false;
         console.log(result);
         console.log(result.data);
         console.log(this.detailsDiscs);
+        console.log(this.loading);
       })
       .catch((error) => {
         console.log("Errore", error);
@@ -54,13 +59,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-  .discs_list {
-    width: 100%;
+  .container {
     background-color: rgb(33, 39, 65);
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+  .discs_list {
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
-    // debug
-    height: 600px;   
+    margin: auto;
+    color: white;
   }
 
 </style>
