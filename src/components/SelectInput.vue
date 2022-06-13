@@ -3,11 +3,7 @@
         <div>
             <h3>Usa la Select per filtrare per genere</h3>
             <select>
-                <option value="0">All</option>
-                <option value="1">Rock</option> 
-                <option value="2">Pop</option> 
-                <option value="3">Jazz</option>
-                <option value="3">Metal</option>
+                <option v-for="(value, index) in itemGenre" :key="index">{{ value }}</option>
             </select>
         </div>
 
@@ -27,9 +23,13 @@
 export default {
     name: 'SelectSongGenre',
 
+    props: {
+        itemGenre : Array,   
+    },
+
     data(){
         return {
-            inputText : "",
+            inputText : "",           
         }
     },
 
