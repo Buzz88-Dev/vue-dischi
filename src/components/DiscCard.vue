@@ -48,17 +48,16 @@ export default {
           flex-direction: column;
           align-items: center;
           padding: 10px;
+          text-align: center;
         }
 
         h4 {
             display: flex;
             flex-wrap: wrap;
-            text-align: center;
             text-transform: uppercase;
         }
         .author_year {
             color: grey;
-            text-align: center;
             padding-top: 10px;
             font-size: 12px;
         }
