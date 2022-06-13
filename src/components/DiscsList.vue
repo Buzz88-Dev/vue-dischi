@@ -1,15 +1,18 @@
 <template>
   <div class="container">
+    
+    <div class="search">
+      <SelectSongGenre @mySearch="searchSong" />
+      <!-- <div class="prova">
+          {{ userText }}
+      </div> -->
+    </div>
 
-    <SelectSongGenre @mySearch="searchSong" />
-    <!-- <div class="prova">
-        {{ userText }}
-    </div> -->
     <div v-if="loading">
             <LoadDiscs />
     </div>
     <div v-else class="discs_list">
-            <DiscCard v-for="(song, index) in detailsDiscs" :key="index" :itemDiscCard="song" /> 
+            <DiscCard v-for="(song, index) in filteredDetailsDiscs" :key="index" :itemDiscCard="song" /> 
                                                 <!-- itemDiscCard è quello indicato in props in DiscCard.vue mentre song in DiscsList.vue -->
     </div>
   </div>
@@ -65,6 +68,18 @@ export default {
       this.userText = textUser;
       console.log(textUser);
     }
+  },
+
+  computed: {
+    filteredDetailsDiscs (){
+      if (this.userText === ""){
+        return this.detailsDiscs
+      } else {
+        return this.detailsDiscs.filter(item => {
+          return item.title.toLowerCase().includes(this.userText.toLowerCase())
+      })
+      }
+    }
   }
 }
 </script>
@@ -88,5 +103,10 @@ export default {
   // .prova {
   //   color: white
   // }
+
+  .search {
+    width: 80%;
+    margin: auto;
+  }
 
 </style>
