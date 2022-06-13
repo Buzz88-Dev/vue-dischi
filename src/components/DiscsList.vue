@@ -1,24 +1,30 @@
 <template>
-        <div class="discs_list">
+      <div v-if="loading">
+            <LoadDiscs />
+      </div>
+      <div v-else class="discs_list">
             <DiscCard v-for="(song, index) in detailsDiscs" :key="index" :item="song" />
-        </div>
+      </div>
 </template>
 
 <script>
 import axios from "axios";
 import DiscCard from './DiscCard.vue';
+import LoadDiscs from './Load.vue';
 
 export default {
   name: 'DiscsList',
 
   components: {
     DiscCard,
+    LoadDiscs,
   },
 
   data(){
       return {
           apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
           detailsDiscs: [],
+          loading: true,
       }
   },
 
@@ -32,6 +38,7 @@ export default {
       .get(this.apiUrl)
       .then((result) => {
         this.detailsDiscs = result.data.response;
+        this.loading = false;
         console.log(result);
         console.log(result.data);
         console.log(this.detailsDiscs);
