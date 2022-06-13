@@ -2,7 +2,7 @@
   <div class="container">
     
     <div class="search">
-      <SelectSongGenre @mySearch="searchSong" :itemGenre="searchGenreSong()"/>
+      <SelectSongGenre @mySearch="searchSong" :itemGenre="searchGenreSong()" @mySelect="changeSelectGenre"/>
       <!-- <div class="prova">
           {{ userText }}
       </div> -->
@@ -42,6 +42,7 @@ export default {
           loading: true,
           userText: "",
           genderSong: [],
+          selectGenre: "All",
       }
   },
 
@@ -80,6 +81,11 @@ export default {
           }
       });
       return this.genderSong;
+    },
+
+    changeSelectGenre(change){
+      this.selectGenre = (change);
+      console.log(change);
     }
   },
 
