@@ -64,7 +64,7 @@ export default {
         console.log(result.data);
         console.log(this.detailsDiscs);
         console.log(this.loading);
-        console.log(result.data.response[0].genre);
+        console.log(result.data.response[0].genre);   // stampo rock
       })
       .catch((error) => {
         console.log("Errore", error);
