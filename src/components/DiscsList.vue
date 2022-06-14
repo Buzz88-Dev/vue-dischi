@@ -16,6 +16,7 @@
             <DiscCard v-for="(song, index) in filteredGenreSongs" :key="index" :itemDiscCard="song" /> 
                                                 <!-- itemDiscCard è quello indicato in props in DiscCard.vue mentre song in DiscsList.vue -->
     </div>
+
   </div>
 
 </template>
@@ -41,7 +42,7 @@ export default {
           detailsDiscs: [],
           loading: true,
           userText: "",
-          genderSong: [],
+          genderSong: ["All"],
           selectGenre: "All",
       }
   },
@@ -55,6 +56,7 @@ export default {
       axios
       .get(this.apiUrl)
       .then((result) => {
+        console.log(this.detailsDiscs);
         this.detailsDiscs = result.data.response;  // è un array composto da 10 oggetti
                                                    // (10) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
         this.loading = false;
@@ -62,6 +64,7 @@ export default {
         console.log(result.data);
         console.log(this.detailsDiscs);
         console.log(this.loading);
+        console.log(result.data.response[0].genre);
       })
       .catch((error) => {
         console.log("Errore", error);

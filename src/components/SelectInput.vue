@@ -2,8 +2,7 @@
     <div class="selectSong">
         <div>
             <h3>Usa la Select per filtrare per genere</h3>
-            <select v-model="selected" @click="sendValueSelect">
-                <option>All</option>
+            <select v-model="selected" @change="sendValueSelect">
                 <option v-for="(value, index) in itemGenre" :key="index">{{ value }}</option>
             </select>
         </div>
@@ -59,7 +58,7 @@ export default {
         padding: 20px;
         text-align: center;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
 
         h3 {
             color: white;
